@@ -87,7 +87,11 @@ export default function DocPage() {
           <div className="prose mt-5 max-w-none">
             <h1>{doc.title}</h1>
             {doc.description && <p className="!text-[1.05rem] !text-muted">{doc.description}</p>}
-            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug, [rehypeHighlight, { ignoreMissing: true }]]}>{doc.body}</ReactMarkdown>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeSlug, [rehypeHighlight, { ignoreMissing: true }]]}
+              components={{ table: ({ node, ...props }) => <div className="overflow-x-auto"><table {...props} /></div> }}
+            >{doc.body}</ReactMarkdown>
           </div>
 
           {(doc.prev || doc.next) && (

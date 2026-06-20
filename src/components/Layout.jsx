@@ -35,7 +35,9 @@ function ScrollProgress() {
 function Nav({ onSearch }) {
   const { mode, accent, toggle, setAccent } = useTheme()
   const [pick, setPick] = useState(false)
+  const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
+  useEffect(() => setOpen(false), [pathname])
   const isChangelog = pathname === '/docs/changelog'
   const isDocs = pathname.startsWith('/docs') && !isChangelog
   const linkBase = 'rounded-lg px-3 py-2 text-sm font-500 transition'
@@ -53,7 +55,7 @@ function Nav({ onSearch }) {
           <a href={GITHUB} className={cls(false)}>GitHub</a>
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={onSearch} className="hidden items-center gap-2 rounded-lg border border-hairline bg-surface px-3 py-1.5 text-sm text-faint transition hover:border-accent/40 hover:text-muted sm:flex">
+          <button onClick={onSearch} className="hidden items-center gap-2 rounded-lg border border-hairline bg-surface px-3 py-1.5 text-sm text-faint transition hover:border-accent/40 hover:text-muted md:flex">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
             <span>Search</span>
             <kbd className="font-mono text-[0.7rem] rounded border border-hairline px-1.5 py-0.5">⌘K</kbd>
@@ -77,8 +79,27 @@ function Nav({ onSearch }) {
               ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>
               : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>}
           </button>
+          <button onClick={() => setOpen((v) => !v)} aria-label="Menu" aria-expanded={open} className="grid h-9 w-9 place-items-center rounded-lg border border-hairline bg-surface text-muted transition hover:border-accent/40 hover:text-ink md:hidden">
+            {open
+              ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+              : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>}
+          </button>
         </div>
       </div>
+      {open && (
+        <div className="border-t border-hairline bg-canvas md:hidden">
+          <div className="space-y-1 px-5 py-3">
+            <button onClick={() => { onSearch(); setOpen(false) }} className="mb-1 flex w-full items-center gap-2 rounded-lg border border-hairline bg-surface px-3 py-2.5 text-sm text-muted">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+              Search the docs
+              <kbd className="ml-auto font-mono text-[0.7rem] rounded border border-hairline px-1.5 py-0.5">⌘K</kbd>
+            </button>
+            <Link to="/docs/introduction" className={'block ' + cls(isDocs)}>Docs</Link>
+            <Link to="/docs/changelog" className={'block ' + cls(isChangelog)}>Changelog</Link>
+            <a href={GITHUB} className={'block ' + cls(false)}>GitHub</a>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

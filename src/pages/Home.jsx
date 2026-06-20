@@ -71,7 +71,7 @@ function PostmanMock() {
         <span className="h-2.5 w-2.5 rounded-full bg-delete/60" /><span className="h-2.5 w-2.5 rounded-full bg-put/60" /><span className="h-2.5 w-2.5 rounded-full bg-get/60" />
         <span className="ml-2 font-mono text-xs text-faint">Postman — CRM API</span>
       </div>
-      <div className="grid grid-cols-[1fr_1.25fr] divide-x divide-hairline">
+      <div className="grid grid-cols-1 divide-y divide-hairline sm:grid-cols-[1fr_1.25fr] sm:divide-x sm:divide-y-0">
         {/* collection tree */}
         <div className="space-y-0.5 p-2.5 font-mono text-[0.72rem]">
           <div className="flex items-center gap-1.5 px-1.5 pb-1 text-faint"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 1 1-2.64-6.36" /><path d="M21 4v5h-5" /></svg> CRM API</div>
