@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import hljs from 'highlight.js/lib/core'
 import php from 'highlight.js/lib/languages/php'
 import bash from 'highlight.js/lib/languages/bash'
@@ -24,9 +25,12 @@ export function Logo({ className = 'h-8 w-8' }) {
 
 export function Button({ href, variant = 'primary', children, className = '', ...rest }) {
   const cls = 'btn ' + (variant === 'primary' ? 'btn-primary' : 'btn-ghost') + ' ' + className
-  return href
-    ? <a href={href} className={cls} {...rest}>{children}</a>
-    : <button className={cls} {...rest}>{children}</button>
+  if (!href) return <button className={cls} {...rest}>{children}</button>
+  // Internal routes (e.g. /docs/introduction) use the router; external links use <a>.
+  const internal = href.startsWith('/') && !href.startsWith('//')
+  return internal
+    ? <Link to={href} className={cls} {...rest}>{children}</Link>
+    : <a href={href} className={cls} {...rest}>{children}</a>
 }
 
 export function Badge({ children, className = '' }) {
