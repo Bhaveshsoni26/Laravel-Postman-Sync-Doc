@@ -126,7 +126,7 @@ function Hero({ stats }) {
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-60" />
       <div className="glow-spot pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-8 lg:pb-28 lg:pt-24">
+      <div className="relative mx-auto grid grid-cols-1 max-w-7xl items-center gap-14 px-5 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:px-8 lg:pb-28 lg:pt-24">
         <div>
           <Badge><span className="h-1.5 w-1.5 rounded-full bg-accent" />v1.x — Laravel 10, 11 &amp; 12 Support</Badge>
           <h1 className="mt-6 font-display text-[2.5rem] font-700 leading-[1.05] tracking-tight text-ink sm:text-[3.2rem]">Keep Postman in sync with your <span className="gradient-text">Laravel API</span> — automatically.</h1>
@@ -182,7 +182,7 @@ function FeatureGrid() {
   return (
     <section id="features" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
       <SectionHeading eyebrow="capabilities" title="Everything your API already describes" sub="The package treats your Laravel app as the source of truth. Each feature pulls real data from your code — not a separate spec you have to maintain." />
-      <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map(([t, d, i], idx) => (
           <div key={t} className="reveal surface-card surface-card-hover group p-6" data-delay={(idx % 3) * 70}>
             <div className="grid h-11 w-11 place-items-center rounded-xl border border-hairline bg-accent/10 text-accent transition group-hover:border-accent/40">
@@ -212,7 +212,7 @@ function Workflow() {
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" />
       <div className="relative mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <SectionHeading eyebrow="how it works" title="From routes to a shared collection" sub="One command runs the whole pipeline. Re-run it any time your API changes — the output is deterministic, so diffs stay small." />
-        <div className="mt-16 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-6">
           {STEPS.map(([t, d, i], idx) => (
             <div key={t} className="reveal relative" data-delay={idx * 70}>
               {idx < STEPS.length - 1 && <div className="pointer-events-none absolute left-[2.1rem] top-5 hidden h-px w-[calc(100%+1.5rem)] bg-gradient-to-r from-accent/50 to-hairline lg:block" />}
@@ -233,7 +233,7 @@ function Workflow() {
 function Install() {
   return (
     <section id="install" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
+      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <div className="reveal">
           <span className="eyebrow">// installation</span>
           <h2 className="mt-3 font-display text-[2rem] font-700 tracking-tight text-ink sm:text-[2.4rem]">Up and running in three commands</h2>
@@ -242,7 +242,7 @@ function Install() {
         </div>
         <div className="reveal space-y-3" data-delay="100">
           {[['01', 'composer require bhaveshsoni26/laravel-postman-sync'], ['02', 'php artisan vendor:publish --tag=postman-sync-config'], ['03', 'php artisan postman:sync']].map(([n, c]) => (
-            <div key={n} className="flex items-start gap-3"><span className="mt-3 font-mono text-xs text-faint">{n}</span><CodeBlock language="bash" code={c} className="flex-1" /></div>
+            <div key={n} className="flex items-start gap-3"><span className="mt-3 font-mono text-xs text-faint">{n}</span><CodeBlock language="bash" code={c} className="min-w-0 flex-1" /></div>
           ))}
         </div>
       </div>
@@ -263,7 +263,7 @@ function QuickStart() {
     <section id="quick-start" className="border-y border-hairline bg-surface/30">
       <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <SectionHeading eyebrow="quick start" title="Five steps to a synced collection" sub="The whole onboarding, start to finish. Each step takes seconds." />
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <ol className="space-y-3">
             {QS.map(([t, d], i) => (
               <li key={t} className="reveal flex gap-4 rounded-xl border border-transparent p-3 transition hover:border-hairline hover:bg-surface/60" data-delay={i * 50}>
@@ -297,7 +297,7 @@ function Configuration() {
   return (
     <section id="configuration" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
       <SectionHeading eyebrow="configuration" title="Sensible defaults, full control" sub="Everything works out of the box. When you need to, the published config file and a few env values cover the rest." />
-      <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="reveal">
           <h3 className="mb-3 font-mono text-sm text-faint">.env</h3>
           <CodeBlock language="bash" filename=".env" code={ENV} />
@@ -305,8 +305,8 @@ function Configuration() {
         </div>
         <div className="reveal" data-delay="100">
           <h3 className="mb-3 font-mono text-sm text-faint">config/postman-sync.php</h3>
-          <div className="surface-card overflow-hidden">
-            <table className="w-full text-sm">
+          <div className="surface-card overflow-x-auto">
+            <table className="w-full min-w-[26rem] text-sm">
               <thead><tr className="border-b border-hairline text-left"><th className="px-4 py-3 font-mono text-[0.68rem] uppercase tracking-wider text-faint">Option</th><th className="px-4 py-3 font-mono text-[0.68rem] uppercase tracking-wider text-faint">Default</th></tr></thead>
               <tbody>
                 {OPTIONS.map(([k, d, desc]) => (
@@ -335,7 +335,7 @@ function Commands() {
     <section id="commands" className="border-y border-hairline bg-surface/30">
       <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <SectionHeading eyebrow="commands" title="One command, three modes" sub="Generate locally, push with a safe merge, or force a clean replace. Every run prints exactly what changed." />
-        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
           {COMMANDS.map(([cmd, label, desc, out], i) => (
             <div key={cmd} className="reveal flex flex-col" data-delay={i * 70}>
               <div className="surface-card flex h-full flex-col p-5">
@@ -382,7 +382,7 @@ function Examples() {
   return (
     <section id="examples" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
       <SectionHeading eyebrow="before / after" title="Your code in, a real request out" sub="The route and its form request on the left become a complete, ready-to-send Postman request on the right — body, headers and variables included." />
-      <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-[1fr_auto_1fr]">
+      <div className="mt-14 grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[1fr_auto_1fr]">
         <div className="reveal">
           <div className="mb-3 flex items-center gap-2"><span className="method method-post">POST</span><span className="font-mono text-sm text-muted">Laravel route + validation</span></div>
           <CodeBlock language="php" filename="your application" code={BEFORE} />
@@ -404,7 +404,7 @@ function Matrix() {
     <section id="matrix" className="border-y border-hairline bg-surface/30">
       <div className="mx-auto max-w-4xl px-5 py-24 lg:px-8">
         <SectionHeading eyebrow="compatibility" title="Supported out of the box" sub="Built and tested against the Laravel versions and auth stacks teams actually run." />
-        <div className="reveal mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
+        <div className="reveal mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
           {MATRIX.map((r) => (
             <div key={r} className="flex items-center justify-between bg-surface px-5 py-4">
               <span className="text-sm text-ink">{r}</span>
@@ -427,14 +427,14 @@ const PROBLEMS = [
 function Why() {
   return (
     <section id="why" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div className="reveal">
           <span className="eyebrow">// the problem</span>
           <h2 className="mt-3 font-display text-[2rem] font-700 tracking-tight text-ink sm:text-[2.4rem]">Manual Postman upkeep never lasts</h2>
           <p className="mt-4 text-[1.02rem] leading-relaxed text-muted">Keeping a collection in step with a growing API by hand is a losing game. It works for a week, then reality drifts and trust in the collection quietly erodes.</p>
           <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/8 p-6"><h3 className="font-display text-[1.05rem] font-600 text-ink">The fix</h3><p className="mt-2 text-sm leading-relaxed text-muted">Make the collection a build artifact. Re-run one command and your routes, bodies, auth, docs and tests regenerate from the code — so Postman is always a faithful mirror of the API, not a separate thing to maintain.</p></div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {PROBLEMS.map(([t, d], i) => (
             <div key={t} className="reveal surface-card p-5" data-delay={(i % 2) * 70}>
               <div className="grid h-9 w-9 place-items-center rounded-lg border border-delete/30 bg-delete/10 text-delete"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg></div>
@@ -459,7 +459,7 @@ function Testimonials() {
     <section id="testimonials" className="border-y border-hairline bg-surface/30">
       <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <SectionHeading eyebrow="from the community" title="Built for real Laravel teams" sub="How teams describe working with a collection that maintains itself." />
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
           {QUOTES.map(([q, n, r, c], i) => (
             <figure key={n} className="reveal surface-card flex h-full flex-col p-6" data-delay={i * 80}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" className="text-accent/40"><path d="M7.5 6C5 6 3 8 3 10.5S5 15 7.5 15c0 2-1.5 3-3 3.5 4-.5 7-3.5 7-8C11.5 7.5 9.7 6 7.5 6Zm9 0C14 6 12 8 12 10.5S14 15 16.5 15c0 2-1.5 3-3 3.5 4-.5 7-3.5 7-8C20.5 7.5 18.7 6 16.5 6Z" /></svg>

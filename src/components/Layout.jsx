@@ -44,23 +44,23 @@ function Nav({ onSearch }) {
   const cls = (active) => linkBase + (active ? ' text-accent' : ' text-muted hover:text-ink')
   return (
     <nav className="sticky top-0 z-50 border-b border-hairline bg-canvas/75 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5">
-          <Logo className="h-8 w-8" />
-          <span className="font-display text-[0.95rem] font-600 tracking-tight text-ink">Laravel Postman Sync</span>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-5 lg:px-8">
+        <Link to="/" className="flex min-w-0 items-center gap-2">
+          <Logo className="h-8 w-8 shrink-0" />
+          <span className="font-display text-sm font-600 leading-tight tracking-tight text-ink sm:text-[0.95rem]">Laravel Postman Sync</span>
         </Link>
         <div className="hidden items-center gap-1 md:flex">
           <Link to="/docs/introduction" className={cls(isDocs)}>Docs</Link>
           <Link to="/docs/changelog" className={cls(isChangelog)}>Changelog</Link>
           <a href={GITHUB} className={cls(false)}>GitHub</a>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <button onClick={onSearch} className="hidden items-center gap-2 rounded-lg border border-hairline bg-surface px-3 py-1.5 text-sm text-faint transition hover:border-accent/40 hover:text-muted md:flex">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
             <span>Search</span>
             <kbd className="font-mono text-[0.7rem] rounded border border-hairline px-1.5 py-0.5">⌘K</kbd>
           </button>
-          <div className="relative">
+          <div className="relative hidden sm:block">
             <button onClick={() => setPick((v) => !v)} aria-label="Accent color" className="grid h-9 w-9 place-items-center rounded-lg border border-hairline bg-surface transition hover:border-accent/40">
               <span className="h-4 w-4 rounded-full bg-gradient-to-br from-accent to-accent2" />
             </button>
@@ -97,6 +97,14 @@ function Nav({ onSearch }) {
             <Link to="/docs/introduction" className={'block ' + cls(isDocs)}>Docs</Link>
             <Link to="/docs/changelog" className={'block ' + cls(isChangelog)}>Changelog</Link>
             <a href={GITHUB} className={'block ' + cls(false)}>GitHub</a>
+            <div className="flex items-center gap-2 px-3 pt-2">
+              <span className="font-mono text-xs text-faint">Accent</span>
+              {Object.entries(ACCENTS).map(([name, rgb]) => (
+                <button key={name} onClick={() => setAccent(name)} aria-label={name}
+                  className={'h-5 w-5 rounded-full ring-2 transition ' + (accent === name ? 'ring-white/70' : 'ring-transparent')}
+                  style={{ background: `rgb(${rgb})` }} />
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -172,7 +180,7 @@ function Footer() {
   return (
     <footer className="border-t border-hairline">
       <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5"><Logo className="h-8 w-8" /><span className="font-display text-[0.95rem] font-600 text-ink">Laravel Postman Sync</span></div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">Generate and sync Postman collections straight from your Laravel routes — no manual upkeep.</p>
